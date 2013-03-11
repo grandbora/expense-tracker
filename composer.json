@@ -1,0 +1,11 @@
+{
+    "name": "grandbora/expense-tracker",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4",
+        "silex/silex": "1.0.*@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}

@@ -1,0 +1,5 @@
+vendor
+vagrant
+composer.phar
+.env
+.DS_Store
