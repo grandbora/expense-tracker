@@ -3,7 +3,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.10",
-        "silex/silex": "1.0.*@dev"
+        "silex/silex": "1.0.*@dev",
+        "twig/twig": ">=1.8,<2.0-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
