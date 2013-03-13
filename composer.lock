@@ -1,5 +1,5 @@
 {
-    "hash": "eef553172b173e07f6a90a2502a7b024",
+    "hash": "732ed33eda688e7dd52d85e2c07cacf1",
     "packages": [
         {
             "name": "pimple/pimple",
@@ -858,7 +858,7 @@
         "silex/silex": 20
     },
     "platform": {
-        "php": ">=5.3.10"
+        "php": ">=5.4"
     },
     "platform-dev": [
 
