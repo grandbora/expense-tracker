@@ -30,12 +30,22 @@ class UserControllerProvider implements ControllerProviderInterface
             $password = $request->request->get('password');
             $user->setEmail($email);
             $user->setPassword($password);
-            $user->authenticate();
+            $result = $user->authenticate();
+
+            if (false === $result) {
+                return $app->json(array(), 401); 
+            }
 
             $response = $app->json($user, 201);
-            if (null !== $user->getAuthToken()) {
-                $response->headers->setCookie(new Cookie('authToken', 'All your base are belong to us'));
-            }
+            $response->headers->setCookie(new Cookie(
+                'authToken', 
+                $user->getAuthToken(),
+                0,
+                '/',
+                null,
+                false,
+                false
+            ));
 
             return $response;
         });

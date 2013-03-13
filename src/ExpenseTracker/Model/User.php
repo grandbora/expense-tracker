@@ -30,8 +30,13 @@ class User implements \JsonSerializable
     public function authenticate()
     {
         $res = $this->api->authenticate($this->getEmail(), $this->getPassword());
+        if (200 !== $res->httpCode) {
+            return false;
+        }
+
         $this->setAccountId($res->accountID);
         $this->setAuthToken($res->authToken);
+        return true;
     }
 
     /**

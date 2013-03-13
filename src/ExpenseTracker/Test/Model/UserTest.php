@@ -57,7 +57,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function testAuthenticate()
+    public function testAuthenticateSucceeds()
     {
         $user = new User($this->api);
         $user->setEmail($this->email);
@@ -77,10 +77,31 @@ class UserTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo($this->email), $this->equalTo($this->password))
             ->will($this->returnValue($mockedRes));
 
-        $user->authenticate();
+        $actual = $user->authenticate();
 
+        $this->assertTrue($actual);
         $this->assertEquals($this->accountId, $user->getAccountId());
         $this->assertEquals($this->authToken, $user->getAuthToken());
+    }
 
+    /**
+     *
+     */
+    public function testAuthenticateFails()
+    {
+        $user = new User($this->api);
+        $user->setEmail($this->email);
+        $user->setPassword($this->password);
+
+        $mockedRes = json_decode('{"httpCode":401,"jsonCode":401}');
+
+        $this->api->expects($this->once())
+            ->method('authenticate')
+            ->with($this->equalTo($this->email), $this->equalTo($this->password))
+            ->will($this->returnValue($mockedRes));
+
+        $actual = $user->authenticate();
+
+        $this->assertFalse($actual);
     }
 }

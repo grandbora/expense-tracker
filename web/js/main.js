@@ -27,9 +27,9 @@ require.config({
 require(['app'], function(App){
   'use strict'
 
-  var app = new App()
+  var app
   
   $(function() {
-    app.start()
+    app = new App()
   })
 })

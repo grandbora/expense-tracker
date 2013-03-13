@@ -12,11 +12,13 @@ define(['text!template/login.html'], function(template){
        ,password : this.$el.find('.password').val()
       })
 
-      this.model.save([], {
-        success : function(argument){
-          debugger //BDNF
-        }
+      this.model.save([],{
+        error : this.authenticationError
       })
+    }
+
+   ,authenticationError: function() {
+      alert('Why don\'t we try the correct username and password?')
     }
 
    ,render: function() {
