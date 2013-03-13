@@ -8,11 +8,15 @@ define(['text!template/login.html'], function(template){
 
    ,login: function() {
       this.model.set({
-        userName : this.$el.find('.username').val()
+        email : this.$el.find('.username').val()
        ,password : this.$el.find('.password').val()
       })
 
-      this.model.save()
+      this.model.save([], {
+        success : function(argument){
+          debugger
+        }
+      })
     }
 
    ,render: function() {

@@ -23,10 +23,10 @@ class UserControllerProvider implements ControllerProviderInterface
            $api = new Api();
            $user = new User($api);
 
-           $userName = $request->request->get('userName');
+           $email = $request->request->get('email');
            $password = $request->request->get('password');
-           $user->setUserName($userName);
-           $user->setUserName($password);
+           $user->setEmail($userName);
+           $user->setPassword($password);
 
            $user->authenticate();
 
