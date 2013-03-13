@@ -12,7 +12,7 @@ define(['text!template/login.html'], function(template){
        ,password : this.$el.find('.password').val()
       })
 
-      this.model.authenticate()
+      this.model.save()
     }
 
    ,render: function() {

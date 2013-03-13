@@ -1,17 +1,19 @@
 <?php
+use Silex\Application;
+use Silex\Provider\TwigServiceProvider;
 use ExpenseTracker\Controller\IndexControllerProvider;
-use ExpenseTracker\Controller\AuthenticationControllerProvider;
+use ExpenseTracker\Controller\UserControllerProvider;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-$app = new Silex\Application();
+$app = new Application();
 $app['debug'] = true;
 
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
+$app->register(new TwigServiceProvider(), array(
     'twig.path' => dirname(__DIR__).'/src/ExpenseTracker/View',
 ));
 
 $app->mount('/', new IndexControllerProvider());
-$app->mount('/', new AuthenticationControllerProvider());
+$app->mount('/user', new UserControllerProvider());
 
 $app->run();
