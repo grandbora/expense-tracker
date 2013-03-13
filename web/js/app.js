@@ -1,4 +1,4 @@
-define(['model/user', 'model/transactionList', 'view/login', 'view/transactionListView'], function(User, TransactionList, LoginView, TransactionListView){
+define(['model/user', 'model/transactionList', 'view/login', 'view/transactionList'], function(User, TransactionList, LoginView, TransactionListView){
   App = function(){
     this.init()
   }
