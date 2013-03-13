@@ -1,26 +1,13 @@
 <?php
 namespace ExpenseTracker\Model;
 
-use ExpenseTracker\Model\Api;
-
 /**
  *
  * @author Bora Tunca
  */
-class TransactionList implements \JsonSerializable 
+class TransactionList extends ApiAwareModel 
 {
-
-    private $api;
-    private $authToken;
     private $transactionContainer;
-
-    /**
-     *
-     */
-    public function __construct(Api $api)
-    {
-        $this->api = $api;
-    }
 
     /**
      *
@@ -35,24 +22,6 @@ class TransactionList implements \JsonSerializable
 
         $this->transactionContainer = $res->transactionList;
         return true;
-    }
-
-    /**
-     *
-     * @param string $authToken
-     */
-    public function setAuthToken($authToken)
-    {
-       $this->authToken = $authToken;
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getAuthToken()
-    {
-       return $this->authToken;
     }
 
     /**

@@ -1,28 +1,15 @@
 <?php
 namespace ExpenseTracker\Model;
 
-use ExpenseTracker\Model\Api;
-
 /**
  *
  * @author Bora Tunca
  */
-class User implements \JsonSerializable 
+class User extends ApiAwareModel 
 {
-
-    private $api;
     private $accountId;
     private $email;
     private $password;
-    private $authToken;
-
-    /**
-     *
-     */
-    public function __construct(Api $api)
-    {
-        $this->api = $api;
-    }
 
     /**
      *
@@ -92,24 +79,6 @@ class User implements \JsonSerializable
     public function getPassword()
     {
        return $this->password;
-    }
-
-    /**
-     *
-     * @param string $authToken
-     */
-    public function setAuthToken($authToken)
-    {
-       $this->authToken = $authToken;
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getAuthToken()
-    {
-       return $this->authToken;
     }
 
     /**
