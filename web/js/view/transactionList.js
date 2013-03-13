@@ -1,11 +1,22 @@
-define(['view/transaction', 'text!template/transactionList.html'], function(TransactionView, transactionListTemplate){
+define(['view/transaction', 'view/addForm', 'text!template/transactionList.html'], function(TransactionView, AddForm, transactionListTemplate){
 
   var TransactionList = Backbone.View.extend({
 
     className : 'transactionTable'
 
+   ,events: {
+      'click .button span':'showAddFrom'
+    }
+
    ,initialize: function() {
-      this.collection.on("reset", this.resetView, this);
+      this.collection.on("reset", this.resetView, this)
+    }
+
+   ,showAddFrom: function() {
+      var addForm = new AddForm({
+        collection: this.collection
+      });
+      this.$el.find('.form').append(addForm.render().$el)
     }
 
    ,resetView: function() {
