@@ -20,7 +20,7 @@ class UserControllerProvider implements ControllerProviderInterface
         });
 
         $controllers->post('/', function (Request $request, Application $app) {
-           $api = new Api();
+           $api = new Api($app['buzz']);
            $user = new User($api);
 
            $email = $request->request->get('email');

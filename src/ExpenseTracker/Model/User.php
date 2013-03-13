@@ -16,6 +16,9 @@ class User implements \JsonSerializable
     private $password;
     private $authToken;
 
+    /**
+     *
+     */
     public function __construct(Api $api)
     {
         $this->api = $api;

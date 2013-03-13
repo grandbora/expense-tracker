@@ -4,6 +4,8 @@
     "require": {
         "php": ">=5.4",
         "silex/silex": "1.0.*@dev",
+        "kriswallsmith/buzz": "*",
+        "marcw/buzz-service-provider": "*",
         "twig/twig": ">=1.8,<2.0-dev"
     },
     "require-dev": {

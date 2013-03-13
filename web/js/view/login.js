@@ -14,7 +14,7 @@ define(['text!template/login.html'], function(template){
 
       this.model.save([], {
         success : function(argument){
-          debugger
+          debugger //BDNF
         }
       })
     }
