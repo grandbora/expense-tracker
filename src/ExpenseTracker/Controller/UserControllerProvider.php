@@ -4,6 +4,9 @@ namespace ExpenseTracker\Controller;
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Cookie;
+use ExpenseTracker\Model\User;
+use ExpenseTracker\Model\Api;
 
 class UserControllerProvider implements ControllerProviderInterface
 {
@@ -20,17 +23,21 @@ class UserControllerProvider implements ControllerProviderInterface
         });
 
         $controllers->post('/', function (Request $request, Application $app) {
-           $api = new Api($app['buzz']);
-           $user = new User($api);
+            $api = new Api($app['buzz']);
+            $user = new User($api);
 
-           $email = $request->request->get('email');
-           $password = $request->request->get('password');
-           $user->setEmail($userName);
-           $user->setPassword($password);
+            $email = $request->request->get('email');
+            $password = $request->request->get('password');
+            $user->setEmail($email);
+            $user->setPassword($password);
+            $user->authenticate();
 
-           $user->authenticate();
+            $response = $app->json($user, 201);
+            if (null !== $user->getAuthToken()) {
+                $response->headers->setCookie(new Cookie('authToken', 'All your base are belong to us'));
+            }
 
-           return $app->json($user, 201);
+            return $response;
         });
 
         return $controllers;
