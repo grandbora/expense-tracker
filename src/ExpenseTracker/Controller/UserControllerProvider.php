@@ -30,9 +30,8 @@ class UserControllerProvider implements ControllerProviderInterface
             $password = $request->request->get('password');
             $user->setEmail($email);
             $user->setPassword($password);
-            $result = $user->authenticate();
 
-            if (false === $result) {
+            if (false === $user->authenticate()) {
                 return $app->json(array(), 401); 
             }
 
