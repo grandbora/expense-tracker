@@ -26,11 +26,12 @@ class User implements \JsonSerializable
 
     /**
      *
+     * @return bool
      */
     public function authenticate()
     {
         $res = $this->api->authenticate($this->getEmail(), $this->getPassword());
-        if (200 !== $res->httpCode) {
+        if (false === isset($res->httpCode) || 200 !== $res->httpCode) {
             return false;
         }
 

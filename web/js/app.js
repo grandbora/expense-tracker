@@ -1,4 +1,4 @@
-define(['model/user', 'model/TransactionList', 'view/login', 'view/TransactionListView'], function(User, TransactionList, LoginView, TransactionListView){
+define(['model/user', 'model/transactionList', 'view/login', 'view/transactionListView'], function(User, TransactionList, LoginView, TransactionListView){
   App = function(){
     this.init()
   }
@@ -33,7 +33,7 @@ define(['model/user', 'model/TransactionList', 'view/login', 'view/TransactionLi
       authToken : $.cookie('authToken')
     })
 
-    this.transactionListView = TransactionListView({
+    this.transactionListView = new TransactionListView({
       collection : this.transactionList
     })
 

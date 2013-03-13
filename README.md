@@ -11,3 +11,11 @@ backbone, user sync
 backend user api model
 
 js models created even if not used
+
+common before handlers
+
+usage of models
+
+issuccess should go to own class
+
+hardcoded partner name etc

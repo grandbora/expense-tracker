@@ -101,7 +101,6 @@ class UserTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($mockedRes));
 
         $actual = $user->authenticate();
-
         $this->assertFalse($actual);
     }
 }

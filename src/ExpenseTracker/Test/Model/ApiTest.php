@@ -60,4 +60,33 @@ class ApiTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    /**
+     *
+     */
+    public function testFetchTransactionList()
+    {
+        $authToken = '1234ASAD';
+
+        $url = "https://api.expensify.com?";
+        $url .= "command=Get";
+        $url .= "&partnerName=" . Api::PARTNER_NAME;
+        $url .= "&authToken=$authToken";
+        $url .= "&returnValueList=transactionList";
+
+        $jsonStr = '{"transactionList":[{"dummy":"dummy"},{"dummy":"dummy2"}],"httpCode":200,"jsonCode":200}';
+
+        $response = new Response();
+        $response->setContent($jsonStr);
+
+        $this->browser->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo($url))
+            ->will($this->returnValue($response));
+
+        $actual = $this->api->fetchTransactionList($authToken);
+        $expected = json_decode($jsonStr);
+
+        $this->assertEquals($expected, $actual);
+    }
 }
