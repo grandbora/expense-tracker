@@ -1,8 +1,8 @@
-define(['view/transaction'], function(TransactionView){
+define(['view/transaction', 'text!template/transactionList.html'], function(TransactionView, transactionListTemplate){
 
   var TransactionList = Backbone.View.extend({
 
-    className : 'transactionList'
+    className : 'transactionTable'
 
    ,initialize: function() {
       this.collection.on("reset", this.resetView, this);
@@ -14,16 +14,16 @@ define(['view/transaction'], function(TransactionView){
 
    ,addTransaction: function(transaction, index) {
       transaction.set({'index' : index})
-      console.log(transaction.attributes) //BDNF REMOVE
       transactionView = new TransactionView({
         model : transaction
       });
 
-      this.$el.append(transactionView.render().$el)
+      this.$el.find('.transactionList').append(transactionView.render().$el)
     }
 
    ,render: function() {
-      return this;
+      this.$el.html(transactionListTemplate)
+      return this
     }
 
   })

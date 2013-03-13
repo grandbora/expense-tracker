@@ -1,4 +1,11 @@
 .transactionList{
-  height: 200px;
+  height: 500px;
   overflow: scroll;
+  overflow-x:  scroll;
+}
+
+.transactionList .transactionRow div, .transactionHeader div{
+  min-width: 135px;
+  border: 1px blue dotted;
+  display: inline-table;
 }

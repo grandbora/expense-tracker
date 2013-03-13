@@ -1,15 +1,14 @@
-define(['text!template/transaction.html'], function(template){
+define(['text!template/transaction.html'], function(transactionTemplate){
 
   var Transaction = Backbone.View.extend({
-    template: _.template(template),
-    
-    render: function() {
-      debugger
-      var template = _.template(template)
-      this.$el.html(template(this.model.attributes))
+
+    className : 'transactionRow'
+
+   ,render: function() {
+      var template = _.template(transactionTemplate, this.model.attributes);
+      this.$el.html(template)
       return this
     }
-
   })
 
   return Transaction
