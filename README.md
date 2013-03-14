@@ -39,30 +39,11 @@ Since it is mentioned alread I would like to share a problem I had with the cook
 
 Now it may be a good time to talk about the objects created on the backend and their relations with each other. No need mention that I followed mvc pattern. The controllers are responsible for creating the necessary models, initializing their state and calling the necessary actions on them. Afterwards they are responsible for sending the output back to the client. The models do the api calls via a common api integration object that is used by all models. All the models are inherited from an abstract model which provides the necessary functionality to interact with the api object. The models are basically responsible for validating and interpreting the api results. The ones that should return json data, have implemented the "json serializible" interface. Models have a very basic validation, and that logic is duplicated in all models. Actually this logic should live in the response class of that should be passed from api object to models. But currently api returns only StdClass objects, I did not bother to create a custom class for it. Finally the api model; it retrieves the raw json string from the api, converts it to an object then returns it to the caller. It holds only api specific logic.
 
-backend user api model
+Another thing to mention before closing this act is that, the models are developed in a tdd manner and it is a blessing to have a good unit test coverage.
 
-js models created even if not used
+###ACT III - resolution
 
-common before handlers
+After all this fun(!) the app was serving its intended purpose. So I added travis and watch the green bar appearing on [travis](https://travis-ci.org). Then I logged in to the amazon server and pulled the latest of the repository. Currently it is located at this ip:http://54.244.236.133/ may not stay same in the future.
 
-usage of models
+I would like to congratulate the readers that made it so far. If you are interested you can go on checking the other similar apps [currency converter](https://github.com/grandbora/currency-converter) and [soundlist](https://github.com/grandbora/soundlist).
 
-issuccess should go to own class
-
-hardcoded partner name etc
-
-calling remove individually
-
-testing 
-
-client side validations
-
-update transaction table
-
-loader
-
-implementation completed
-add travis
-amazon upload
-
-add other links too
