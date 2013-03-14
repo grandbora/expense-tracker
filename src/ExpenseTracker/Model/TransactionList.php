@@ -5,7 +5,7 @@ namespace ExpenseTracker\Model;
  *
  * @author Bora Tunca
  */
-class TransactionList extends ApiAwareModel 
+class TransactionList extends ApiAwareModel implements \JsonSerializable
 {
     private $transactionContainer;
 

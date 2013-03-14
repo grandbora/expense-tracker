@@ -89,4 +89,37 @@ class ApiTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    /**
+     *
+     */
+    public function testSaveTransaction()
+    {
+        $authToken = '1234ASAD';
+        $created = '2013-03-31';
+        $amount = '1122';
+        $merchant = 'Starbucks';
+
+        $url = "https://api.expensify.com?";
+        $url .= "command=CreateTransaction";
+        $url .= "&authToken=$authToken";
+        $url .= "&created=$created";
+        $url .= "&amount=$amount";
+        $url .= "&merchant=$merchant";
+
+        $jsonStr = '{"transactionList":[{"dummy":"dummy"},{"dummy":"dummy2"}],"httpCode":200,"jsonCode":200}';
+
+        $response = new Response();
+        $response->setContent($jsonStr);
+
+        $this->browser->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo($url))
+            ->will($this->returnValue($response));
+
+        $actual = $this->api->saveTransaction($authToken, $created, $amount, $merchant);
+        $expected = json_decode($jsonStr);
+
+        $this->assertEquals($expected, $actual);
+    }
 }

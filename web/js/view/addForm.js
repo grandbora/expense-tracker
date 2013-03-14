@@ -9,14 +9,14 @@ define(['model/transaction', 'text!template/addForm.html'], function(Transaction
     }
 
    ,createNewTransaction: function() {
-      var date = this.$el.find('.date').val()
-      var merchant = this.$el.find('.merchant').val()
+      var created = this.$el.find('.date').val()
       var amount = this.$el.find('.amount').val()
+      var merchant = this.$el.find('.merchant').val()
 
       var transaction = new Transaction({
-        'date':date, 
-        'merchant':merchant, 
-        'amount':amount
+        'created':created, 
+        'amount':amount,
+        'merchant':merchant
       })
 
       transaction.save([],{
@@ -27,6 +27,7 @@ define(['model/transaction', 'text!template/addForm.html'], function(Transaction
 
    ,updateView: function() {
       console.log(this)
+      debugger
       //remove
       //reset collection
       this.remove()

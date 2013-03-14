@@ -33,19 +33,28 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
      */
     public function testSaveSucceeds()
     {
+        $created = "created";
+        $amount = "amount";
+        $merchant = "merchant";
+        $this->transaction->setCreated($created);
+        $this->transaction->setAmount($amount);
+        $this->transaction->setMerchant($merchant);
+
         $transactionPartStr = '[{"dummy":"dummy"},{"dummy":"dummy2"}]';
         $mockedRes = json_decode('{"transactionList":'.$transactionPartStr.',"httpCode":200,"jsonCode":200}');
 
         $this->api->expects($this->once())
             ->method('saveTransaction')
-            ->with($this->equalTo($this->authToken))
+            ->with(
+                $this->equalTo($this->authToken),
+                $this->equalTo($created),
+                $this->equalTo($amount),
+                $this->equalTo($merchant)
+            )
             ->will($this->returnValue($mockedRes));
 
         $actual = $this->transaction->save();
         $this->assertTrue($actual);
-
-        $actual = json_encode($this->transaction);
-        $this->assertEquals($transactionPartStr, $actual);
     }
 
     /**

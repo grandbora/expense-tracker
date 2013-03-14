@@ -7,7 +7,7 @@ use ExpenseTracker\Model\Api;
  *
  * @author Bora Tunca
  */
-abstract class ApiAwareModel implements \JsonSerializable 
+abstract class ApiAwareModel
 {
     protected $api;
     private $authToken;

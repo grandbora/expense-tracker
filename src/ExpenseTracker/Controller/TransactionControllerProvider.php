@@ -5,6 +5,7 @@ use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use ExpenseTracker\Model\TransactionList;
+use ExpenseTracker\Model\Transaction;
 use ExpenseTracker\Model\Api;
 
 class TransactionControllerProvider implements ControllerProviderInterface
@@ -17,6 +18,12 @@ class TransactionControllerProvider implements ControllerProviderInterface
             if (false === $request->cookies->has('authToken')) {
                 return $app->json(array(), 401); 
             }
+
+            if (0 !== strpos($request->headers->get('Content-Type'), 'application/json')) 
+                return;
+
+            $data = json_decode($request->getContent(), true);
+            $request->request->replace(is_array($data) ? $data : array());
         });
 
         $controllers->get('/', function (Request $request, Application $app) {
@@ -32,8 +39,22 @@ class TransactionControllerProvider implements ControllerProviderInterface
         });
 
         $controllers->post('/', function (Request $request, Application $app) {
-            $authToken = $request->cookies->get('authToken');
-            
+            $created = $request->request->get('created');
+            $amount = $request->request->get('amount');
+            $merchant = $request->request->get('merchant');
+
+            $api = new Api($app['buzz']);
+            $transaction = new Transaction($api);
+            $transaction->setAuthToken($request->cookies->get('authToken'));
+            $transaction->setCreated($created);
+            $transaction->setAmount($amount);
+            $transaction->setMerchant($merchant);
+
+            if (false === $transaction->save()) {
+                return $app->json(array(), 401); 
+            }
+
+            return $app->json(array(), 201);
         });
 
         return $controllers;

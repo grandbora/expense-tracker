@@ -5,7 +5,7 @@ namespace ExpenseTracker\Model;
  *
  * @author Bora Tunca
  */
-class User extends ApiAwareModel 
+class User extends ApiAwareModel implements \JsonSerializable
 {
     private $accountId;
     private $email;

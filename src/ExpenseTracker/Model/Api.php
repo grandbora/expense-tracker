@@ -31,7 +31,6 @@ class Api
     {
         $queryParams = array_merge(array(
             'command' => $commandName,
-            'partnerName' => self::PARTNER_NAME,
         ), $additionalData);
 
         return 'https://api.expensify.com?' . http_build_query($queryParams);
@@ -45,6 +44,7 @@ class Api
     public function authenticate($email, $password)
     {
         $url = $this->buildApiQuery('Authenticate', array(
+            'partnerName' => self::PARTNER_NAME,
             'partnerPassword' => self::PARTNER_PASSWORD,
             'partnerUserID' => $email,
             'partnerUserSecret' => $password,
@@ -61,6 +61,7 @@ class Api
     public function fetchTransactionList($authToken)
     {
         $url = $this->buildApiQuery('Get', array(
+            'partnerName' => self::PARTNER_NAME,
             'authToken' => $authToken,
             'returnValueList' => 'transactionList',
         ));
@@ -72,8 +73,20 @@ class Api
     /**
      *
      * @param string $authToken
+     * @param string $created
+     * @param string $amount
+     * @param string $merchant
      */
-    public function saveTransaction($authToken)
+    public function saveTransaction($authToken, $created, $amount, $merchant)
     {
+        $url = $this->buildApiQuery('CreateTransaction', array(
+            'authToken' => $authToken,
+            'created' => $created,
+            'amount' => $amount,
+            'merchant' => $merchant,
+        ));
+
+        $response = $this->browser->get($url);
+        return json_decode($response->getContent());
     }
 }
