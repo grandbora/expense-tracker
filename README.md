@@ -45,5 +45,5 @@ Another thing to mention before closing this act is that, the models are develop
 
 After all this fun the app was serving its intended purpose. So I added travis and watch the green bar appearing on [travis](https://travis-ci.org). Then I logged in to the amazon server and pulled the latest of the repository. Currently it is located at this ip:http://54.244.236.133/ may not stay same in the future.
 
-I would like to congratulate the readers that made it so far. If you are interested you can go on checking the other similar apps [currency converter](https://github.com/grandbora/currency-converter) and [soundlist](https://github.com/grandbora/soundlist).
+I would like to congratulate the readers who made it so far. If you are interested you can go on checking the other similar apps [currency converter](https://github.com/grandbora/currency-converter) and [soundlist](https://github.com/grandbora/soundlist).
 
