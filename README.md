@@ -37,7 +37,7 @@ More on backend, as mentioned it runs on silex. It uses twig for templating and 
 
 Since it is mentioned alread I would like to share a problem I had with the cookies. It is the "http only" attribute of the cookie. Silex, as the official documentation says, stands on the shoulders of the giants, which means it uses the symphony components. When you set a cookie on the header of a symfony response object, it sets the "http only" attribute to true by default. That flag as wikipedia says, prevents the cookie to be accessed from client side scripting. I used to know that too! But my brain did its thing again and I spent quite a while to prove that there is no way to access an http only cookie from javascript. After removing the flag from the cookie I was back on development.
 
-
+Now it may be a good time to talk about the objects created on the backend and their relations with each other. No need mention that I followed mvc pattern. The controllers are responsible for creating the necessary models, initializing their state and calling the necessary actions on them. Afterwards they are responsible for sending the output back to the client. The models do the api calls via a common api integration object that is used by all models. All the models are inherited from an abstract model which provides the necessary functionality to interact with the api object. The models are basically responsible for validating and interpreting the api results. The ones that should return json data, have implemented the "json serializible" interface. Models have a very basic validation, and that logic is duplicated in all models. Actually this logic should live in the response class of that should be passed from api object to models. But currently api returns only StdClass objects, I did not bother to create a custom class for it. Finally the api model; it retrieves the raw json string from the api, converts it to an object then returns it to the caller. It holds only api specific logic.
 
 backend user api model
 
@@ -57,19 +57,12 @@ testing
 
 client side validations
 
-
-
-
 update transaction table
 
 loader
 
 implementation completed
-
-
-
 add travis
-
 amazon upload
 
 add other links too
