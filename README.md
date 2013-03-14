@@ -35,8 +35,9 @@ I think this is a good point to talk about the structure (call it architecture i
 
 More on backend, as mentioned it runs on silex. It uses twig for templating and buzz for making requests. More on client side, mainly used libraries are backbone, underscore, query and japery UI. In addition to that client side module loading is done via require.js, for loading the templates text plugin of require.js is used. Also I used templating functionality  that is provided in underscore.js. I considered using something more advanced but later saw that the app doesn't require any advanced templating. Finally users auth token is stored on the cookie and to read it on the client side, I used a cookie plugin for jquery.
 
+Since it is mentioned alread I would like to share a problem I had with the cookies. It is the "http only" attribute of the cookie. Silex, as the official documentation says, stands on the shoulders of the giants, which means it uses the symphony components. When you set a cookie on the header of a symfony response object, it sets the "http only" attribute to true by default. That flag as wikipedia says, prevents the cookie to be accessed from client side scripting. I used to know that too! But my brain did its thing again and I spent quite a while to prove that there is no way to access an http only cookie from javascript. After removing the flag from the cookie I was back on development.
 
-architecture
+
 
 backend user api model
 
@@ -53,20 +54,10 @@ hardcoded partner name etc
 calling remove individually
 
 testing 
-templating
-
-
-get token from query
-
 
 client side validations
 
 
-check docblock,
-semi colons
-etc.
-
-duplicate transaction and list
 
 
 update transaction table
