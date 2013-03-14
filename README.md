@@ -1,6 +1,17 @@
 [![Build Status](https://travis-ci.org/grandbora/expense-tracker.png)](https://travis-ci.org/grandbora/expense-tracker)
 
 
+#Expense Tracker
+====================
+
+##TLDR  
+An attempt to test [expensify](https://www.expensify.com/) api in real life.  
+
+Below lies the blow-by-blow development history. If interested ?  Keep on reading : [have fun](https://github.com/documentcloud/backbone/issues);  
+
+
+##The story  
+
 decided to go with silex, minimalistic approach needs  
 amazon/ heroku troubles  
 --vendors committed  
@@ -48,4 +59,10 @@ loader
 
 implementation completed
 
+
+
 add travis
+
+amazon upload
+
+add other links too
