@@ -27,3 +27,16 @@ calling remove individually
 
 testing 
 templating
+
+
+get token from query
+
+
+client side validations
+
+
+check docblock,
+semi colons
+etc.
+
+duplicate transaction and list

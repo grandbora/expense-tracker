@@ -29,9 +29,7 @@ define(['model/user', 'model/transactionList', 'view/login', 'view/transactionLi
 
 
   App.prototype.showExpense = function(){
-    this.transactionList = new TransactionList([], {
-      authToken : $.cookie('authToken')
-    })
+    this.transactionList = new TransactionList()
 
     this.transactionListView = new TransactionListView({
       collection : this.transactionList

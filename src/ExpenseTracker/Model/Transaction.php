@@ -5,7 +5,7 @@ namespace ExpenseTracker\Model;
  *
  * @author Bora Tunca
  */
-class TransactionList extends ApiAwareModel 
+class Transaction extends ApiAwareModel 
 {
     private $transactionContainer;
 
@@ -13,10 +13,11 @@ class TransactionList extends ApiAwareModel
      *
      * @return bool
      */
-    public function fetch()
+    public function save() 
     {
-       $res = $this->api->fetchTransactionList($this->getAuthToken());
-       if (false === isset($res->httpCode) || 200 !== $res->httpCode) {
+
+        $res = $this->api->saveTransaction($this->getAuthToken());
+        if (false === isset($res->httpCode) || 200 !== $res->httpCode) {
             return false;
         }
 

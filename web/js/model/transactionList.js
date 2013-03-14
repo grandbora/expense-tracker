@@ -4,14 +4,8 @@ define(['model/transaction'], function(Transaction){
 
     model: Transaction
 
-   ,url : function(){
-      return '/transaction/?authToken=' + this.authToken
-    }
-
-    ,initialize: function(models, options) {
-      this.authToken = options.authToken
-    }
-
+   ,url : '/transaction/'
+   
   })
 
   return TransactionList

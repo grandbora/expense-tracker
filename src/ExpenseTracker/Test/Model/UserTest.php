@@ -97,7 +97,6 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
         $this->api->expects($this->once())
             ->method('authenticate')
-            ->with($this->equalTo($this->email), $this->equalTo($this->password))
             ->will($this->returnValue($mockedRes));
 
         $actual = $user->authenticate();

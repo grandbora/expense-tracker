@@ -13,7 +13,11 @@ define(['model/transaction', 'text!template/addForm.html'], function(Transaction
       var merchant = this.$el.find('.merchant').val()
       var amount = this.$el.find('.amount').val()
 
-      var transaction = new Transaction({'date':date, 'merchant':merchant, 'amount':amount})
+      var transaction = new Transaction({
+        'date':date, 
+        'merchant':merchant, 
+        'amount':amount
+      })
 
       transaction.save([],{
         success : this.updateView,

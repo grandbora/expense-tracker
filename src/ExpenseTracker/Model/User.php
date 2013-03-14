@@ -85,7 +85,8 @@ class User extends ApiAwareModel
      *
      * @return StdClass
      */
-    public function jsonSerialize() {
+    public function jsonSerialize() 
+    {
         $jsonObject = new \StdClass();
         $jsonObject->accountId = $this->getAccountId();
         $jsonObject->email = $this->getEmail();

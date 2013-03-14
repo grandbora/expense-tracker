@@ -1,16 +1,16 @@
 <?php
 namespace ExpenseTracker\Test\Model;
 
-use ExpenseTracker\Model\TransactionList;
+use ExpenseTracker\Model\Transaction;
 
 /**
  *
  * @author Bora Tunca
  */
-class TransactionListTest extends \PHPUnit_Framework_TestCase
+class TransactionTest extends \PHPUnit_Framework_TestCase
 {
     private $api;
-    private $transactionList;
+    private $transaction;
     private $authToken;
 
     /**
@@ -22,44 +22,44 @@ class TransactionListTest extends \PHPUnit_Framework_TestCase
                     ->disableOriginalConstructor()
                     ->getMock();
 
-        $this->transactionList = new TransactionList($this->api);
+        $this->transaction = new Transaction($this->api);
 
         $this->authToken = 'authToken';
-        $this->transactionList->setAuthToken($this->authToken);
+        $this->transaction->setAuthToken($this->authToken);
     }
 
     /**
      *
      */
-    public function testFetchSucceeds()
+    public function testSaveSucceeds()
     {
         $transactionPartStr = '[{"dummy":"dummy"},{"dummy":"dummy2"}]';
         $mockedRes = json_decode('{"transactionList":'.$transactionPartStr.',"httpCode":200,"jsonCode":200}');
 
         $this->api->expects($this->once())
-            ->method('fetchTransactionList')
+            ->method('saveTransaction')
             ->with($this->equalTo($this->authToken))
             ->will($this->returnValue($mockedRes));
 
-        $actual = $this->transactionList->fetch();
+        $actual = $this->transaction->save();
         $this->assertTrue($actual);
 
-        $actual = json_encode($this->transactionList);
+        $actual = json_encode($this->transaction);
         $this->assertEquals($transactionPartStr, $actual);
     }
 
     /**
      *
      */
-    public function testFetchFails()
+    public function testSaveFails()
     {
-        $mockedRes = json_decode('{"httpCode":404,"jsonCode":404}');
+        $mockedRes = json_decode('{"httpCode":402,"jsonCode":402}');
 
         $this->api->expects($this->once())
-            ->method('fetchTransactionList')
+            ->method('saveTransaction')
             ->will($this->returnValue($mockedRes));
 
-        $actual = $this->transactionList->fetch();
+        $actual = $this->transaction->save();
         $this->assertFalse($actual);
     }
 }

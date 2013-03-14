@@ -68,4 +68,12 @@ class Api
         $response = $this->browser->get($url);
         return json_decode($response->getContent());
     }
+
+    /**
+     *
+     * @param string $authToken
+     */
+    public function saveTransaction($authToken)
+    {
+    }
 }

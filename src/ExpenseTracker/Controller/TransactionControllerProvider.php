@@ -13,21 +13,27 @@ class TransactionControllerProvider implements ControllerProviderInterface
     {
         $controllers = $app['controllers_factory'];
 
-        $controllers->get('/', function (Request $request, Application $app) {
-            $authToken = $request->query->get('authToken');
-            if (null === $authToken) {
+        $controllers->before(function (Request $request) {
+            if (false === $request->cookies->has('authToken')) {
                 return $app->json(array(), 401); 
             }
+        });
 
+        $controllers->get('/', function (Request $request, Application $app) {
             $api = new Api($app['buzz']);
             $transactionList = new TransactionList($api);
-            $transactionList->setAuthToken($authToken);
+            $transactionList->setAuthToken($request->cookies->get('authToken'));
 
             if (false === $transactionList->fetch()) {
                 return $app->json(array(), 401); 
             }
 
             return $app->json($transactionList, 201);
+        });
+
+        $controllers->post('/', function (Request $request, Application $app) {
+            $authToken = $request->cookies->get('authToken');
+            
         });
 
         return $controllers;
