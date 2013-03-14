@@ -19,17 +19,15 @@ define(['model/transaction', 'text!template/addForm.html'], function(Transaction
         'merchant':merchant
       })
 
+      transaction.on("sync", this.updateView, this)
+
       transaction.save([],{
-        success : this.updateView,
         error : this.showAddError
       })
     }
 
    ,updateView: function() {
-      console.log(this)
-      debugger
-      //remove
-      //reset collection
+      this.collection.fetch()
       this.remove()
     }
 

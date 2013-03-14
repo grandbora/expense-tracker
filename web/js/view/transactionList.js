@@ -20,6 +20,7 @@ define(['view/transaction', 'view/addForm', 'text!template/transactionList.html'
     }
 
    ,resetView: function() {
+      this.$el.find('.transactionList').empty()
       _.each(this.collection.models, this.addTransaction, this)
     }
 

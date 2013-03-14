@@ -40,3 +40,10 @@ semi colons
 etc.
 
 duplicate transaction and list
+
+
+update transaction table
+
+loader
+
+implementation completed
