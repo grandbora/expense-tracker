@@ -1,0 +1,16 @@
+language: php
+
+php:
+  - "5.4"
+
+before_script:
+    - composer --dev install
+
+script: phpunit --coverage-text
+
+notifications:
+  email:
+    recipients:
+      - bora.tunca@yahoo.com
+    on_success: always
+    on_failure: always

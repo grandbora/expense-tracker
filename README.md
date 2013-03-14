@@ -20,10 +20,7 @@ issuccess should go to own class
 
 hardcoded partner name etc
 
-do not forget travis
-
 calling remove individually
-
 
 testing 
 templating
@@ -47,3 +44,5 @@ update transaction table
 loader
 
 implementation completed
+
+add travis

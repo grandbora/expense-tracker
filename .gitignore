@@ -1,4 +1,5 @@
 /vendor
 /vagrant
+/web/report
 composer.phar
 .DS_Store
