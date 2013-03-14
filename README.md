@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/grandbora/expense-tracker.png)](https://travis-ci.org/grandbora/expense-tracker)
+
+
 decided to go with silex, minimalistic approach needs  
 amazon/ heroku troubles  
 --vendors committed  
